@@ -1004,6 +1004,18 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
     max-height: 50vh;
     overflow-y: auto;
   }
+  /* Mentor cards - tablet */
+  .mentor-profile-header {
+    gap: 14px !important;
+    padding: 18px !important;
+  }
+  .mentor-mini-chart {
+    width: 130px !important;
+  }
+  .mentor-avatar img, .mentor-avatar div {
+    width: 64px !important;
+    height: 64px !important;
+  }
 }
 
 /* --- Small Phone --- */
@@ -1091,6 +1103,47 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
   }
   .ss-row > * {
     font-size: 0.72rem;
+  }
+  /* --- Mentores tab card layout --- */
+  .mentor-profile-header {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+  .mentor-avatar {
+    flex-shrink: 0;
+  }
+  .mentor-avatar img, .mentor-avatar div {
+    width: 56px !important;
+    height: 56px !important;
+    font-size: 1.4rem !important;
+  }
+  .mentor-info {
+    flex: 1 1 100% !important;
+    order: 3;
+  }
+  .mentor-kpi-row {
+    gap: 10px !important;
+  }
+  .mentor-kpi-row > div > div:first-child {
+    font-size: 1.15rem !important;
+  }
+  .mentor-kpi-row > div > div:last-child {
+    font-size: 0.55rem !important;
+  }
+  .mentor-mini-chart {
+    width: 90px !important;
+    flex-shrink: 0;
+  }
+  .mentor-mini-chart canvas {
+    height: 70px !important;
+  }
+  .mentor-marcas {
+    gap: 3px !important;
+  }
+  .mentor-marcas span {
+    font-size: 0.6rem !important;
+    padding: 1px 6px !important;
   }
 }
 </style>
@@ -3636,19 +3689,19 @@ function renderMentores() {
     const cardId = `mentor-card-${idx}`;
 
     cardsHtml += `
-    <div style="background:var(--apple-card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;">
+    <div class="mentor-card" style="background:var(--apple-card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;">
       <!-- Profile header -->
-      <div style="display:flex;gap:20px;padding:24px;align-items:flex-start;border-bottom:1px solid var(--apple-separator);">
+      <div class="mentor-profile-header" style="display:flex;gap:20px;padding:24px;align-items:flex-start;border-bottom:1px solid var(--apple-separator);">
         <!-- Avatar -->
-        <div style="flex-shrink:0;">${avatarHtml}</div>
+        <div class="mentor-avatar" style="flex-shrink:0;">${avatarHtml}</div>
         <!-- Info -->
-        <div style="flex:1;min-width:0;">
+        <div class="mentor-info" style="flex:1;min-width:0;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
             <h3 style="font-size:1.2rem;font-weight:800;color:var(--apple-label);margin:0;letter-spacing:-0.01em;">${mentor}</h3>
             <span style="font-size:0.68rem;font-weight:600;color:${mColor};background:${mColor}18;padding:2px 10px;border-radius:10px;">Mentor</span>
           </div>
           <!-- KPI row -->
-          <div style="display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap;">
+          <div class="mentor-kpi-row" style="display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap;">
             <div style="text-align:center;">
               <div style="font-size:1.5rem;font-weight:800;color:var(--apple-label);line-height:1;">${total}</div>
               <div style="font-size:0.6rem;color:var(--apple-secondary);font-weight:600;text-transform:uppercase;">Total</div>
@@ -3673,12 +3726,12 @@ function renderMentores() {
           <!-- Status bar -->
           <div style="display:flex;gap:2px;border-radius:4px;overflow:hidden;margin-bottom:10px;">${barHtml}</div>
           <!-- Marcas pills -->
-          <div style="display:flex;flex-wrap:wrap;gap:4px;">
+          <div class="mentor-marcas" style="display:flex;flex-wrap:wrap;gap:4px;">
             ${marcasAtendidas.map(m => `<span style="font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:8px;background:rgba(0,122,255,0.08);color:var(--apple-blue);">${displayName(m)}</span>`).join('')}
           </div>
         </div>
         <!-- Mini chart -->
-        <div style="flex-shrink:0;width:180px;">
+        <div class="mentor-mini-chart" style="flex-shrink:0;width:180px;">
           <canvas id="${chartId}" height="100"></canvas>
         </div>
       </div>
