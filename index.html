@@ -1061,6 +1061,37 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
     min-width: 0 !important;
     flex: 1;
   }
+  .container {
+    padding: 0 8px;
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  .section {
+    overflow-x: hidden;
+  }
+  /* Encontros badges wrap */
+  .encontro-badges, .enc-badges-row {
+    flex-wrap: wrap !important;
+  }
+  /* Volume por Mentor - donut chart fix */
+  /* Volume por Mentor - donut chart smaller on mobile */
+  .mentor-donut-wrap {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .mentor-donut-wrap div {
+    font-size: 0.85rem !important;
+  }
+  /* Session rows - text wrapping */
+  .ss-row {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .ss-row > * {
+    font-size: 0.72rem;
+  }
 }
 </style>
 </head>
@@ -2353,7 +2384,7 @@ function renderResumoTable() {
       <div id="${collapseId}">
         <div style="display:flex;gap:20px;align-items:center;">
           <div style="flex:1;min-width:0;">${mentorCardsHtml}</div>
-          <div style="flex-shrink:0;width:100px;height:100px;position:relative;">
+          <div class="mentor-donut-wrap" style="flex-shrink:0;width:100px;height:100px;position:relative;">
             <canvas id="${chartId}"></canvas>
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
               <div style="font-size:1.1rem;font-weight:800;color:var(--apple-label);line-height:1;">${totalDone + totalConf + totalAgend + totalPre}</div>
