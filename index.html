@@ -1760,7 +1760,7 @@ function getDatesRealizadasPorMarca() {
   const sbd = buildSessionsByDateUnfiltered();
   Object.entries(sbd).forEach(([dk, sessions]) => {
     sessions.forEach(s => {
-      if ((s.tipo === 'done' || s.tipo === 'confirmado') && map[s.marca]) map[s.marca].add(dk);
+      if (s.tipo === 'done' && map[s.marca]) map[s.marca].add(dk);
     });
   });
   return map;
