@@ -2297,12 +2297,12 @@ function renderProgressoTable() {
     const dates = datesPorMarca[m];
     const tipo = tipoMarca(m);
     let cells = '';
-    // Contar datas por encontro (todos os status)
+    // Contar datas por encontro (apenas realizados - done)
     const datesPorEnc = {};
     const sbdProg = buildSessionsByDateUnfiltered();
     Object.entries(sbdProg).forEach(([dk, sessions]) => {
       sessions.forEach(s => {
-        if (s.marca === m) {
+        if (s.marca === m && s.tipo === 'done') {
           if (!datesPorEnc[s.encontro]) datesPorEnc[s.encontro] = new Set();
           datesPorEnc[s.encontro].add(dk);
         }
