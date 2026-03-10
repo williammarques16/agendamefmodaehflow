@@ -3764,6 +3764,7 @@ function renderMentores() {
     const cancC = sessions.filter(s => s.tipo === 'cancelado').length;
     const chartEl = document.getElementById(`mentorMiniChart-${idx}`);
     if (chartEl && sessions.length > 0) {
+      const totalSessions = sessions.length;
       new Chart(chartEl, {
         type: 'doughnut',
         data: {
@@ -3775,6 +3776,20 @@ function renderMentores() {
             hoverOffset: 4
           }]
         },
+        plugins: [{
+          id: 'centerTotal',
+          beforeDraw: function(chart) {
+            var w = chart.width, h = chart.height, ctx = chart.ctx;
+            ctx.restore();
+            var fontSize = (h / 4).toFixed(0);
+            ctx.font = '800 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--apple-label').trim() || '#1d1d1f';
+            ctx.fillText(totalSessions, w / 2, h / 2);
+            ctx.save();
+          }
+        }],
         options: {
           responsive: true,
           maintainAspectRatio: true,
