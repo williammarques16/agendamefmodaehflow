@@ -955,6 +955,113 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
   .export-format-grid { grid-template-columns: repeat(2, 1fr); }
   .export-filters-row { grid-template-columns: 1fr; }
 }
+
+/* ===== MOBILE RESPONSIVE ENHANCEMENTS ===== */
+
+/* --- Tablet + Large Phone --- */
+@media (max-width: 768px) {
+  .header-top {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .mef-logo {
+    padding: 4px 12px;
+    font-size: 0.72rem;
+  }
+  .ss-del-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  .ss-status-select {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+  .cal-btn {
+    padding: 8px 14px;
+  }
+  .ss-inline-input, .ss-inline-select {
+    padding: 6px 8px;
+    font-size: 0.72rem;
+  }
+  table {
+    font-size: 0.75rem;
+  }
+  th, td {
+    padding: 6px 8px;
+  }
+  .table-wrapper {
+    position: relative;
+  }
+  .table-wrapper td:first-child,
+  .table-wrapper th:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--apple-card);
+    z-index: 1;
+  }
+  .agenda-side-panel {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}
+
+/* --- Small Phone --- */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.1rem;
+  }
+  .header-subtitle {
+    display: none;
+  }
+  nav.tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: none;
+    padding: 4px;
+    gap: 4px;
+  }
+  nav.tabs::-webkit-scrollbar {
+    display: none;
+  }
+  nav.tabs button {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .pipeline-board {
+    scroll-snap-type: x mandatory;
+  }
+  .pipeline-col {
+    width: 85vw;
+    min-width: 85vw;
+    scroll-snap-align: start;
+    min-height: 300px;
+  }
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .kpi-card .value {
+    font-size: 1.5rem;
+  }
+  .kpi-card .sub {
+    font-size: 0.65rem;
+  }
+  .section-title {
+    font-size: 1rem;
+  }
+  .agenda-forms-panel {
+    max-height: 250px;
+  }
+  #filterMentorBtn, #filterStatusBtn {
+    min-width: 0 !important;
+    flex: 1;
+  }
+}
 </style>
 </head>
 <body>
