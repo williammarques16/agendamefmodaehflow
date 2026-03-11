@@ -1087,14 +1087,28 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
   .encontro-badges, .enc-badges-row {
     flex-wrap: wrap !important;
   }
-  /* Volume por Mentor - donut chart fix */
-  /* Volume por Mentor - donut chart smaller on mobile */
+  /* Volume por Mentor - mobile layout */
+  .vol-mentor-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+  .vol-mentor-row > div:first-child {
+    order: 2;
+  }
   .mentor-donut-wrap {
-    width: 70px !important;
-    height: 70px !important;
+    width: 80px !important;
+    height: 80px !important;
+    align-self: center;
+    order: 1;
   }
   .mentor-donut-wrap div {
     font-size: 0.85rem !important;
+  }
+  .vol-mentor-legend {
+    flex-wrap: wrap !important;
+    gap: 6px 10px !important;
+    justify-content: center !important;
   }
   /* Session rows - text wrapping */
   .ss-row {
@@ -2435,7 +2449,7 @@ function renderResumoTable() {
         <span style="font-size:0.65rem;font-weight:600;color:var(--apple-tertiary);margin-left:auto;">${totalDone + totalConf + totalAgend + totalPre} sessoes</span>
       </div>
       <div id="${collapseId}">
-        <div style="display:flex;gap:20px;align-items:center;">
+        <div class="vol-mentor-row" style="display:flex;gap:20px;align-items:center;">
           <div style="flex:1;min-width:0;">${mentorCardsHtml}</div>
           <div class="mentor-donut-wrap" style="flex-shrink:0;width:100px;height:100px;position:relative;">
             <canvas id="${chartId}"></canvas>
@@ -2445,7 +2459,7 @@ function renderResumoTable() {
             </div>
           </div>
         </div>
-        <div style="display:flex;gap:12px;margin-top:6px;justify-content:flex-end;">
+        <div class="vol-mentor-legend" style="display:flex;gap:12px;margin-top:6px;justify-content:flex-end;">
           <span style="font-size:0.6rem;display:flex;align-items:center;gap:3px;color:var(--apple-secondary);"><span style="width:8px;height:8px;border-radius:2px;background:#34C759;display:inline-block;"></span>Realizados</span>
           <span style="font-size:0.6rem;display:flex;align-items:center;gap:3px;color:var(--apple-secondary);"><span style="width:8px;height:8px;border-radius:2px;background:#A8E6CF;display:inline-block;"></span>Confirmados</span>
           <span style="font-size:0.6rem;display:flex;align-items:center;gap:3px;color:var(--apple-secondary);"><span style="width:8px;height:8px;border-radius:2px;background:#007AFF;display:inline-block;"></span>Agendados</span>
