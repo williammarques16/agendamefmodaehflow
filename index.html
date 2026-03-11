@@ -1110,6 +1110,35 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
     gap: 6px 10px !important;
     justify-content: center !important;
   }
+  /* Resumo detail row - contain width on mobile */
+  .resumo-detail td {
+    max-width: calc(100vw - 32px) !important;
+    overflow: hidden !important;
+    padding: 10px 8px !important;
+  }
+  /* Mentor rows inside Volume por Mentor */
+  .vol-mentor-item {
+    gap: 8px !important;
+    padding: 5px 0 !important;
+  }
+  .vol-mentor-item img, .vol-mentor-item > div:first-child {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.65rem !important;
+  }
+  .vol-mentor-stats {
+    gap: 3px 5px !important;
+    flex-wrap: wrap !important;
+  }
+  .vol-mentor-name {
+    font-size: 0.7rem !important;
+  }
+  .vol-mentor-total {
+    font-size: 0.85rem !important;
+  }
+  .vol-mentor-badge {
+    font-size: 0.55rem !important;
+  }
   /* Session rows - text wrapping */
   .ss-row {
     flex-wrap: wrap;
@@ -2420,16 +2449,16 @@ function renderResumoTable() {
       const doneW = d.total > 0 ? Math.round((d.done / d.total) * 100) : 0;
       const agendW = d.total > 0 ? Math.round((d.agendado / d.total) * 100) : 0;
       const preW = 100 - doneW - agendW;
-      return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;">
+      return `<div class="vol-mentor-item" style="display:flex;align-items:center;gap:10px;padding:6px 0;">
         ${avHtml}
-        <div style="flex:1;min-width:0;">
-          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;">
-            <span style="font-size:0.78rem;font-weight:700;color:var(--apple-label);">${mt}</span>
-            <span style="font-size:1rem;font-weight:800;color:var(--apple-label);">${d.total}</span>
-            <span style="font-size:0.6rem;font-weight:600;color:#248A3D;">${d.done}R</span>
-            <span style="font-size:0.6rem;font-weight:600;color:#A8E6CF;">${d.confirmado}C</span>
-            <span style="font-size:0.6rem;font-weight:600;color:#007AFF;">${d.agendado}A</span>
-            <span style="font-size:0.6rem;font-weight:600;color:#FF9F0A;">${d.pre}P</span>
+        <div style="flex:1;min-width:0;overflow:hidden;">
+          <div class="vol-mentor-stats" style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
+            <span class="vol-mentor-name" style="font-size:0.78rem;font-weight:700;color:var(--apple-label);">${mt}</span>
+            <span class="vol-mentor-total" style="font-size:1rem;font-weight:800;color:var(--apple-label);">${d.total}</span>
+            <span class="vol-mentor-badge" style="font-size:0.6rem;font-weight:600;color:#248A3D;">${d.done}R</span>
+            <span class="vol-mentor-badge" style="font-size:0.6rem;font-weight:600;color:#A8E6CF;">${d.confirmado}C</span>
+            <span class="vol-mentor-badge" style="font-size:0.6rem;font-weight:600;color:#007AFF;">${d.agendado}A</span>
+            <span class="vol-mentor-badge" style="font-size:0.6rem;font-weight:600;color:#FF9F0A;">${d.pre}P</span>
           </div>
           <div style="height:10px;border-radius:5px;overflow:hidden;background:var(--apple-fill);width:${barW}%;min-width:20px;display:flex;">
             ${d.done > 0 ? `<div style="flex:${d.done};background:#34C759;"></div>` : ''}
