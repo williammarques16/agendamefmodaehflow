@@ -1087,57 +1087,92 @@ tbody tr:hover { background: rgba(0,122,255,0.04); }
   .encontro-badges, .enc-badges-row {
     flex-wrap: wrap !important;
   }
-  /* Volume por Mentor - mobile layout */
+  /* === Resumo table: fit in viewport on mobile === */
+  #resumoTable {
+    table-layout: fixed !important;
+    width: 100% !important;
+  }
+  #resumoTable thead th:nth-child(2),
+  #resumoTable tbody td:nth-child(2),
+  #resumoTable thead th:nth-child(5),
+  #resumoTable tbody td:nth-child(5) {
+    display: none !important;
+  }
+  #resumoTable thead th:nth-child(1) { width: 28% !important; }
+  #resumoTable thead th:nth-child(3) { width: 22% !important; }
+  #resumoTable thead th:nth-child(4) { width: 30% !important; }
+  #resumoTable thead th:nth-child(6) { width: 20% !important; }
+  .table-wrapper {
+    overflow-x: hidden !important;
+  }
+  /* Detail row - full width constrained */
+  .resumo-detail td {
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    overflow: hidden !important;
+    padding: 10px 6px !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+  }
+  .resumo-detail td > div {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  /* Volume por Mentor - vertical stack */
   .vol-mentor-row {
     flex-direction: column !important;
-    gap: 12px !important;
+    gap: 10px !important;
     align-items: stretch !important;
   }
   .vol-mentor-row > div:first-child {
     order: 2;
   }
   .mentor-donut-wrap {
-    width: 80px !important;
-    height: 80px !important;
+    width: 70px !important;
+    height: 70px !important;
     align-self: center;
     order: 1;
   }
   .mentor-donut-wrap div {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
   }
   .vol-mentor-legend {
     flex-wrap: wrap !important;
-    gap: 6px 10px !important;
+    gap: 4px 8px !important;
     justify-content: center !important;
-  }
-  /* Resumo detail row - contain width on mobile */
-  .resumo-detail td {
-    max-width: calc(100vw - 32px) !important;
-    overflow: hidden !important;
-    padding: 10px 8px !important;
   }
   /* Mentor rows inside Volume por Mentor */
   .vol-mentor-item {
-    gap: 8px !important;
-    padding: 5px 0 !important;
+    gap: 6px !important;
+    padding: 4px 0 !important;
   }
   .vol-mentor-item img, .vol-mentor-item > div:first-child {
-    width: 26px !important;
-    height: 26px !important;
-    font-size: 0.65rem !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    font-size: 0.6rem !important;
   }
   .vol-mentor-stats {
-    gap: 3px 5px !important;
+    gap: 3px 4px !important;
     flex-wrap: wrap !important;
   }
   .vol-mentor-name {
-    font-size: 0.7rem !important;
+    font-size: 0.68rem !important;
   }
   .vol-mentor-total {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
   }
   .vol-mentor-badge {
-    font-size: 0.55rem !important;
+    font-size: 0.52rem !important;
+  }
+  /* Session rows inside resumo detail */
+  .resumo-session-row {
+    gap: 4px 6px !important;
+    padding: 3px 6px !important;
+  }
+  .resumo-session-row span {
+    font-size: 0.68rem !important;
+    min-width: 0 !important;
   }
   /* Session rows - text wrapping */
   .ss-row {
@@ -2342,9 +2377,9 @@ function renderResumoTable() {
       const mentor = p.responsavel || '';
       const cor = TIPO_COLORS[p.tipo] || '#007AFF';
       const icon = TIPO_ICONS[p.tipo] || '◉';
-      return `<div style="display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:8px;background:rgba(0,0,0,0.02);">
+      return `<div class="resumo-session-row" style="display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:8px;background:rgba(0,0,0,0.02);flex-wrap:wrap;">
         <span style="color:${cor};font-size:0.75rem;font-weight:700;min-width:14px;">${icon}</span>
-        <span style="font-size:0.75rem;font-weight:600;color:var(--apple-label);min-width:100px;">${weekday} ${String(pd).padStart(2,'0')}/${String(pm).padStart(2,'0')}${horaStr}</span>
+        <span style="font-size:0.75rem;font-weight:600;color:var(--apple-label);">${weekday} ${String(pd).padStart(2,'0')}/${String(pm).padStart(2,'0')}${horaStr}</span>
         <span style="font-size:0.75rem;font-weight:600;color:var(--apple-blue);">E${p.encontro} - ${ETAPAS[p.encontro] || 'Extra'}</span>
         <span style="font-size:0.72rem;color:var(--apple-secondary);">${tema}</span>
         ${mentor ? `<span style="font-size:0.68rem;font-weight:600;color:var(--apple-tertiary);background:var(--apple-fill);padding:1px 7px;border-radius:6px;">${mentor}</span>` : ''}
